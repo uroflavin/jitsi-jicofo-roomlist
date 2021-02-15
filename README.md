@@ -1,5 +1,5 @@
 # jitsi-jicofo-roomlist
-This program filters jicofo log and prints a list of existing conference rooms. 
+This program filters jicofo logs, typically produced by [jitsi-meet](https://jitsi.org/) and prints a list of existing conference rooms.
 
 It's inspired by an idea of Joost Snellink and the great work of Markus B. Weber - please have a look into [his c-implentation](https://gist.github.com/marijani101/10a905848164af258cd651e8fe3d35de)
 
