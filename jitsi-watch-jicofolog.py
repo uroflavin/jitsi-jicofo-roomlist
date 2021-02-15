@@ -4,7 +4,7 @@
 import time
 import os
 import sys
-import keyboard
+
 
 # Datei auf Änderungen überwachen und Zeilen zurückgeben
 def follow(thelogfile):
