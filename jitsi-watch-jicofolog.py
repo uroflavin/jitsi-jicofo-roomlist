@@ -64,13 +64,20 @@ def get_room_entry_from_line(line):
             room_entry["room"] = room_user_info.split("@")[0]
             room_entry["user"] = "SYSTEM"
         # a room has been created by a user
-        elif "org.jitsi.jicofo.auth.AbstractAuthAuthority.log() Authenticated jid:" in line:
-            # action ist ganz am ende das letzte wort
+        # detection is possible by 
+        #   1) 'org.jitsi.jicofo.JitsiMeetConferenceImpl.log() Joining the room: '
+        #       Room is in the last part
+        # or
+        #   2) 'org.jitsi.jicofo.FocusManager.log() Created new focus for '
+        #       Room is somewhere in the middle of the string
+        # or
+        #   3) 'org.jitsi.jicofo.auth.AbstractAuthAuthority.log() Authenticated jid:'
+        #
+        elif "org.jitsi.jicofo.FocusManager.log() Created new focus for " in line:
+            # we have to add our own action-name
             room_entry["action"] = "room created"
-            # user steht nach /im raum
-            room_entry["user"] = line_array[8].strip().split("@")[0]
-            # Room ist am Ende der Zeile
-            room_entry["room"] = line_array[-1].split("@")[0][2:]
+            # Room is the 10. element 
+            room_entry["room"] = line_array[10].strip().split("@")[0].strip()
     
     return room_entry
 
@@ -116,7 +123,7 @@ if __name__ == '__main__':
     # 2. Argument ist die Ausgabedatei (Raumlog)
     roomlog_path = sys.argv[2]
     logfile = open(logfile_path,"r")
-    #
+    # Startup info
     print("jitsi-watch-jicofolog is running...")
     # Initialisieren
     room_log = read_init(logfile)
