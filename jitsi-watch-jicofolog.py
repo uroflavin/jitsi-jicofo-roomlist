@@ -114,13 +114,13 @@ if __name__ == '__main__':
     # 1. Argument ist die Eingangsdatei
     logfile_path = sys.argv[1]
     # 2. Argument ist die Ausgabedatei (Raumlog)
-    log = sys.argv[2]
+    roomlog_path = sys.argv[2]
     logfile = open(logfile_path,"r")
     # Initialisieren
     room_log = read_init(logfile)
 
     for item in room_log:
-        append_roomentry_to_file(log, item)
+        append_roomentry_to_file(roomlog_path, item)
         print(item["date"] + "\t" + item["time"] + "\t" + item["room"] + "\t" + item["user"] + "\t" + item["action"] )
     
     loglines = follow(logfile)
@@ -140,6 +140,6 @@ if __name__ == '__main__':
             else:
                 room_log.append(room_entry)
             
-            append_roomentry_to_file("sample/jicofo.room.log", room_entry)
+            append_roomentry_to_file(roomlog_path, room_entry)
             print(room_entry["date"] + "\t" + room_entry["time"] + "\t" + room_entry["room"] + "\t" + room_entry["user"] + "\t" + room_entry["action"] )
     
