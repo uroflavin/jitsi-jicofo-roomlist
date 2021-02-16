@@ -1,5 +1,5 @@
 # jitsi-jicofo-roomlist
-This program filters jicofo logs, typically produced by [jitsi-meet](https://jitsi.org/) and prints a list of existing conference rooms.
+This program filters jicofo logs, typically produced by [jitsi-meet](https://jitsi.org/) and produce a list of all running jitsi conference rooms.
 
 It's inspired by an idea of Joost Snellink and the great work of Markus B. Weber - please have a look into [his c-implentation](https://gist.github.com/marijani101/10a905848164af258cd651e8fe3d35de)
 
@@ -80,7 +80,7 @@ rm /var/log/jitsi/jicofo.roomstat.log
 
 Do not expose the response from roominfo directly and public on any server, unless you know what you are doing.
 
-There is no userdata exposed, but you get info about running sessions aka rooms.
+There is no userdata exposed, but you get info about all your running jitsi-sessions and a list of names of all open jitsi-rooms on your server (well, thats why i build this, but... )
 
 ## TODO
 
