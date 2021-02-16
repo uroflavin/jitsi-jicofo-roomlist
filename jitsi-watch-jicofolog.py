@@ -60,9 +60,7 @@ def get_room_entry_from_line(line):
         # a room has been deleted
         elif "org.jitsi.jicofo.FocusManager.log() Disposed conference for room:" in line:
             room_entry["action"] = "room delete"
-            room_user_info = line_array[10].strip()
-            room_entry["room"] = room_user_info.split("@")[0]
-            room_entry["user"] = "SYSTEM"
+            room_entry["room"] = line_array[10].strip().split("@")[0].strip()
         # a room has been created by a user
         # detection is possible by 
         #   1) 'org.jitsi.jicofo.JitsiMeetConferenceImpl.log() Joining the room: '
