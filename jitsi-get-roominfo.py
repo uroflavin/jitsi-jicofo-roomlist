@@ -14,6 +14,9 @@ def get_current_room_info(file):
         } 
     
     rooms =  {}
+
+    total_rooms = 0
+    total_users = 0
     
     with open(file, 'r') as logfile:
         while True:
@@ -25,8 +28,6 @@ def get_current_room_info(file):
                 break
             
             line_split = line.split("\t")
-            total_rooms = 0
-            total_users = 0
             
             if len(line_split) == 5:
                 
@@ -34,7 +35,7 @@ def get_current_room_info(file):
                 room["action"] = line_split[4].strip()
 
                 if room["action"] == "room created":
-                    rooms[room["room"]] = 0                    
+                    rooms[room["room"]] = 0           
                     total_rooms += 1
                 elif room["action"] == "room delete":
                     total_rooms -= 1
@@ -49,13 +50,6 @@ def get_current_room_info(file):
                         rooms[room["room"]] -= 1
                         total_users -= 1
     
-    # Fix: Sometimes there are ghost-rooms in the log
-    if total_rooms < 0:
-        total_rooms = 0
-    # Fix: Sometimes there are ghost-rooms and maybe users in the log
-    if total_users < 0:
-        total_users = 0
-
     return {"rooms" : rooms,
              "user_count" : total_users,
              "room_count" : total_rooms,
