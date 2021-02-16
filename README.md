@@ -75,6 +75,13 @@ e.g.
 ```
 rm /var/log/jitsi/jicofo.roomstat.log 
 ```
+
+## A word about security
+
+Do not expose the response from roominfo directly and public on any server, unless you know what you are doing.
+
+There is no userdata exposed, but you get info about running sessions aka rooms.
+
 ## TODO
 
  * Improve Documentation
