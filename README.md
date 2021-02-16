@@ -52,6 +52,14 @@ python3 jitsi-watch-jicofolog.py /var/log/jitsi/jicofo.log  /var/log/jitsi/jicof
 
 ```
 
+To keep jitsi-watch-jicofolog.py running in background, use [nohup or something similar](https://linuxize.com/post/how-to-run-linux-commands-in-background/)
+
+e.g.: 
+
+```
+nohup python3 jitsi-watch-jicofolog.py /var/log/jitsi/jicofo.log /var/log/jitsi/jicofo.roomstat.log &
+```
+
 4) Whenever you want, take a look into your roomlog
 
 python3 jitsi-get-roominfo.py path/to/your/roomlog
@@ -63,6 +71,16 @@ python3 jitsi-get-roominfo.py /var/log/jitsi/jicofo.roomstat.log
 
 5) To clean your roomlog, simply delete the roomlog-file, created by jitsi-watch-jicofolog.py
 
+e.g.
+```
+rm /var/log/jitsi/jicofo.roomstat.log 
+```
+
+## A word about security
+
+Do not expose the response from roominfo directly and public on any server, unless you know what you are doing.
+
+There is no userdata exposed, but you get info about running sessions aka rooms.
 
 ## TODO
 
