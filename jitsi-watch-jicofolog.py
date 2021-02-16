@@ -116,6 +116,8 @@ if __name__ == '__main__':
     # 2. Argument ist die Ausgabedatei (Raumlog)
     roomlog_path = sys.argv[2]
     logfile = open(logfile_path,"r")
+    #
+    print("jitsi-watch-jicofolog is running...")
     # Initialisieren
     room_log = read_init(logfile)
 
